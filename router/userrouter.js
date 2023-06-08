@@ -40,7 +40,7 @@ router.post("/do_register",upload.single("file"),async(req,resp)=>{
 
 router.get("/viewuser",auth,async(req,resp)=>{
     try {
-        const data = await User.find();
+        const data = await User.find({_id:req.user._id});
         resp.render("view",{userdata:data})
     } catch (error) {
         console.log(error);
